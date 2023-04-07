@@ -13,6 +13,7 @@ public class AviaSoulsTest {
     Ticket ticket3 = new Ticket("AeroportFrom1", "AeroportTo3", 2000, 9, 17);
     Ticket ticket4 = new Ticket("AeroportFrom1", "AeroportTo4", 3000, 9, 19);
     Ticket ticket5 = new Ticket("AeroportFrom1", "AeroportTo5", 2500, 9, 21);
+    Ticket ticket6 = new Ticket("AeroportFrom1", "AeroportTo3", 2500, 9, 21);
 
     @Test
     public void shouldCompareTo() {
@@ -22,6 +23,7 @@ public class AviaSoulsTest {
         souls.add(ticket3);
         souls.add(ticket4);
         souls.add(ticket5);
+        souls.add(ticket6);
 
         Ticket[] tickets = { ticket4, ticket5 };
         Arrays.sort(tickets);
@@ -46,6 +48,24 @@ public class AviaSoulsTest {
 
         Arrays.sort(tickets);
         Assertions.assertArrayEquals(expected, tickets);
+    }
+
+    @Test
+    public void shouldTestSearchWithCompare() {   // Тест Search с сортировкой по цене
+
+        AviaSouls souls = new AviaSouls();
+
+        souls.add(ticket1);
+        souls.add(ticket2);
+        souls.add(ticket3);
+        souls.add(ticket4);
+        souls.add(ticket5);
+        souls.add(ticket6);
+
+        Ticket[] actual = souls.search("AeroportFrom1", "AeroportTo3");
+        Ticket[] expected = { ticket3, ticket6 };
+
+        Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
