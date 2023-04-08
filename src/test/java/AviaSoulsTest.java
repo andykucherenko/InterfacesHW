@@ -34,7 +34,7 @@ public class AviaSoulsTest {
     }
 
     @Test
-    public void shouldSearch() {
+    public void shouldSort() {
         AviaSouls souls = new AviaSouls();
         souls.add(ticket1);
         souls.add(ticket2);
@@ -51,7 +51,7 @@ public class AviaSoulsTest {
     }
 
     @Test
-    public void shouldTestSearchWithCompare() {   // Тест Search с сортировкой по цене
+    public void shouldTestSearchWithSeveralTickets() {   // Тест Search с сортировкой по цене
 
         AviaSouls souls = new AviaSouls();
 
@@ -64,6 +64,30 @@ public class AviaSoulsTest {
 
         Ticket[] actual = souls.search("AeroportFrom1", "AeroportTo3");
         Ticket[] expected = { ticket3, ticket6 };
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldTestSearchWithOneTicket() {
+
+        AviaSouls souls = new AviaSouls();
+
+        Ticket ticket = new Ticket("AeroportFrom1", "AeroportTo1", 1000, 9, 10);
+        souls.add(ticket);
+        Ticket[] actual = souls.search("AeroportFrom1", "AeroportTo1");
+        Ticket[] expected = { ticket };
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldTestSearchWithNoTickets() {
+
+        AviaSouls souls = new AviaSouls();
+
+        Ticket[] actual = souls.search("AeroportFrom1", "AeroportTo1");
+        Ticket[] expected = {};
 
         Assertions.assertArrayEquals(expected, actual);
     }
